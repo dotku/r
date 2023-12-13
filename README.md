@@ -11,3 +11,7 @@ Could access refered program by just visiting `/r/#/${program-name}`.
 If you like this program, you can fork from my github repository. 
 
 https://github.com/dotku/r/
+
+## Credit
+
+https://docsify.js.org/
