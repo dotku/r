@@ -4,7 +4,7 @@ DotKu.us' referal program.
 
 ## Design
 
-Could refere by just entering `/r/#/${program-name}` to direct to any program.
+Could access refered program by just visiting `/r/#/${program-name}`.
 
 ## Fork
 
