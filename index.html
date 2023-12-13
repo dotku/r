@@ -25,11 +25,11 @@
           console.log('match', match);
           fetch("https://dotku.us/r/api/programs")
             .then(rsp => rsp.json())
-            .then(rsp => {
-              console.log(rsp)
-              const keys = Object.keys(rsp);
+            .then(rspData => {
+              console.log(rspData)
+              const keys = Object.keys(rspData);
               const key = keys.find(k => route.toLowerCase().includes(k.toLowerCase()))
-              if (key) window.location.href = rsp[key];
+              if (key) window.location.href = rspData[key];
               throw Error(`404: ${window.location.hash} doesn't existed`)
             })
             .catch((e) => {
