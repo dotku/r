@@ -28,7 +28,7 @@
             .then(rsp => {
               console.log(rsp)
               const keys = Object.keys(rsp);
-              const key = keys.find(k => route.includes(k))
+              const key = keys.find(k => route.toLowerCase().includes(k.toLowerCase()))
               if (key) window.location.href = rsp[key];
               throw Error(`404: ${window.location.hash} doesn't existed`)
             })
