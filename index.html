@@ -1,34 +1,46 @@
-
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Referal | a DotKu's Tech Project</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/r/favicon.png">
-    <link
-      rel="stylesheet"
-      href="//cdn.jsdelivr.net/npm/docsify@4/themes/vue.css"
-    />
-    <script>
-      switch(window.location.hash) {
-        case '#/walmart':
-          window.location.href="https://goto.walmart.com/c/4644081/1398372/16662?sourceid=imp_000011112222333344&veh=aff&u=https%3A%2F%2Fwww.walmart.com"
-        case '#/acorns':
-          windows.location.href="https://share.acorns.com/weijingjaylin";
-        default:
-          console.warn('no matching case')
+
+<head>
+  <title>Referal | a DotKu's Tech Project</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="/r/favicon.png">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/themes/vue.css" />
+  <script>
+
+  </script>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      routerMode: 'history',
+      notFoundPage: false,
+      routes: {
+        '(.*)': (route, match, next) => {
+          console.log('route', route);
+          console.log('match', match);
+          fetch("https://dotku.us/r/api/programs")
+            .then(rsp => rsp.json())
+            .then(rsp => {
+              console.log(rsp)
+              const keys = Object.keys(rsp);
+              const key = keys.find(k => route.includes(k))
+              if (key) window.location.href = rsp[key];
+              throw Error(`404: ${window.location.hash} doesn't existed`)
+            })
+            .catch((e) => {
+              console.error(e);
+            })
+          next();
+        }
       }
-      </script>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script>
-      window.$docsify = {
-        routerMode: 'history'
-      };
-    </script>
-    <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-  </body>
+    };
+  </script>
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+</body>
+
 </html>
